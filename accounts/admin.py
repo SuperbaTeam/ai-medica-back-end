@@ -1,34 +1,24 @@
-
-from types import ClassMethodDescriptorType
-
 from django.contrib import admin
 
 from django.contrib.auth.admin import UserAdmin
 
-from accounts.models import CustomUser
-
-from .forms import CusotmUserCreationForm,CustomUserChangeForm
-
+from .forms import CusotmUserCreationForm, CustomUserChangeForm
+from .models import CustomUser
 
 class CustomUserAdmin(UserAdmin):
 
-    add_form=CusotmUserCreationForm
+    add_form = CusotmUserCreationForm
 
-    form=CustomUserChangeForm
+    form = CustomUserChangeForm
 
-    model=CustomUser
+    model = CustomUser
 
-    list_display=[
-
-        "name",
-
-        "mobile",
-
-
+    list_display = [
 
         "email",
 
         "username",
+
     ]
 
-admin.site.register(CustomUser,CustomUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
