@@ -1,23 +1,21 @@
+from django.contrib.auth import models
+
 from django.contrib.auth.models import AbstractUser
 
-from django.db import models
+class CustomUser(AbstractUser):
 
-class Account_Info(AbstractUser):  #Person
+    email=models.models.EmailField( unique=True,max_length=254,verbose_name="Email Address")
 
+    USERNAME_FIELD='email'
 
-    email_account = models.EmailField(unique=True, max_length=100,verbose_name="Email Address Accunt")
-
-
-    USERNAME_FIELD = 'email_account'
-
-    REQUIRED_FIELDS = ['name', 'mobile','username','password']
+    REQUIRED_FIELDS=["username","name","mobile","password"]
 
     class Meta:
 
-        verbose_name = "Account_Info"
+        verbose_name="Person"
 
-        verbose_name_plural = "accounts"
+        verbose_name_plural="People"    
 
-    def __str__(self) -> str:
+    def __str__(self):
 
-        return self.email_account
+        return self.email
