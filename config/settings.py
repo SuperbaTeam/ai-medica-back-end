@@ -11,9 +11,38 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+
+# GENERAL
+# ------------------------------------------------------------------------------
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Setup Environment Variables
+env = environ.Env(
+    DEBUG=(bool, False),
+    ENVIRONMENT=(str, "PRODUCTION"),
+    ALLOW_ALL_ORIGINS=(bool, False),
+    ALLOWED_HOSTS=(list, []),
+    ALLOWED_ORIGINS=(list, []),
+    DATABASE_ENGINE=(str, "django.db.backends.sqlite3"),
+    DATABASE_NAME=(str, BASE_DIR / "db.sqlite3"),
+    DATABASE_USER=(str, ""),
+    DATABASE_PASSWORD=(str, ""),
+    DATABASE_HOST=(str, ""),
+    DATABASE_PORT=(int, 5432),
+)
+environ.Env.read_env()
+
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-SECRET_KEY
+SECRET_KEY = env.str("SECRET_KEY")
+# https://docs.djangoproject.com/en/dev/ref/settings/#debug
+DEBUG = env.bool("DEBUG")
+# https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
+ENVIRONMENT = env.str("ENVIRONMENT")
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +66,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Third-party
+    "corsheaders",
+    'rest_framework',
 
     #local
     'accounts',
@@ -49,8 +82,10 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -128,3 +163,27 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "accounts.CustomUser"
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ],
+}
