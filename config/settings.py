@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # Third-party
     "corsheaders",
     'rest_framework',
@@ -75,7 +75,8 @@ INSTALLED_APPS = [
     'accounts',
     'stroke',
     'hepatitis',
-    'result'
+    'result',
+    'cancer'
 
 ]
 
@@ -176,7 +177,5 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",
     ],
 }
-
-
 
 
