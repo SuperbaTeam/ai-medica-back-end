@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
 class Stroke(models.Model):
 
     G1 = "Male"
@@ -55,7 +55,7 @@ class Stroke(models.Model):
         (D1, "True"),
         (D2, "False"),
     ]
-
+    owner=models.ForeignKey(get_user_model(),models.CASCADE,null=True)
     name = models.CharField(max_length=55, default=None, null=True)
     email = models.CharField(max_length=55, default=None, null=True)
     mobile = models.IntegerField(default=None, null=True)
