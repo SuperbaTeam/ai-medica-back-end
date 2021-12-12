@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'stroke',
     'hepatitis',
     'result'
+    'cancer'
 
 ]
 
