@@ -107,7 +107,7 @@ class Hepatitis(models.Model):
     albumin = models.FloatField(default=None, null=True)
     protime = models.FloatField(default=None, null=True)
     histology = models.CharField(max_length=6, choices=HISTOLOGY, default=Histology2, null=True)
-
+    status = models.CharField(max_length=8, null=True)
 
     def __str__(self):
         return self.name

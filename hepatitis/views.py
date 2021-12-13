@@ -97,6 +97,7 @@ def Hepatitis_Create(request):
             albumin = albumin,
             protime = protime,
             histology = histology,
+            status=predicted_status,
         )
 
         return JsonResponse(data, status=status.HTTP_201_CREATED)
