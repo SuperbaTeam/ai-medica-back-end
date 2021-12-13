@@ -7,8 +7,7 @@ from .views import (
                     )
 
 urlpatterns = [
-    path('create/',Stroke_Create,name="stroke_create"),
-    path('list/',StrokeList.as_view(),name="stroke_list"),
-    path ('detail/<int:pk>/',StrokeDetail.as_view(),name="stroke_detail"),
-    
+    path('',StrokeList.as_view(),name="stroke_list"),
+    path ('<int:pk>/',StrokeDetail.as_view(),name="stroke_detail"),
+    path('create/',Stroke_Create,name="stroke_create"),    
 ]

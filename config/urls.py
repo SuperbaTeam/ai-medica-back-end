@@ -9,6 +9,7 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path("api/cancer/", include("cancer.urls")),
     path('api/stroke/', include('stroke.urls')),
+    path("api-auth/", include("rest_framework.urls")),
     path(
         "api/token/",
         jwt_views.TokenObtainPairView.as_view(),
