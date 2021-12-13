@@ -7,7 +7,7 @@ from django.http.response import JsonResponse
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .models import Stroke
-from .permessions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly
 from .serializers import StrokeSerializers
 
 
@@ -82,14 +82,14 @@ def Stroke_Create(request):
 
 
 class StrokeList(ListCreateAPIView):
-    permission_classes = (IsOwnerOrReadOnly,IsAuthenticatedOrReadOnly)
+    permission_classes = (IsOwnerOrReadOnly,IsAuthenticatedOrReadOnly,)
     model = Stroke
     serializer_class = StrokeSerializers
     queryset = Stroke.objects.all()
 
 
 class StrokeDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsOwnerOrReadOnly,IsAuthenticatedOrReadOnly)
+    permission_classes = (IsOwnerOrReadOnly,IsAuthenticatedOrReadOnly,)
     model = Stroke
     serializer_class = StrokeSerializers
     queryset = Stroke.objects.all()

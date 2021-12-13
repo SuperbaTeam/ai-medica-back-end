@@ -55,7 +55,7 @@ class Stroke(models.Model):
         (D1, "True"),
         (D2, "False"),
     ]
-    owner=models.ForeignKey(get_user_model(),models.CASCADE,null=True)
+    owner=models.ForeignKey(get_user_model(),models.CASCADE,null=True,blank=True)
     name = models.CharField(max_length=55, default=None, null=True)
     email = models.CharField(max_length=55, default=None, null=True)
     mobile = models.IntegerField(default=None, null=True)
@@ -79,3 +79,5 @@ class Stroke(models.Model):
     )
     heart_disease = models.CharField(max_length=5, choices=HEART, default=D1, null=True)
     status = models.CharField(max_length=8, null=True)
+    def __str__(self):
+        return self.name
