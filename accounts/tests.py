@@ -243,3 +243,49 @@ class APITest(APITestCase):
         self.assertEqual(Cancer.objects.count(), test_cancer.id)
      
         self.assertEqual(Cancer.objects.get().id, data["id"])
+
+
+
+
+
+
+    def testdelete(self):
+        
+
+        user_data = get_user_model().objects.create_user(
+            username="test", password="test"
+        )
+        user_data.save()
+
+        test_cancer = Cancer.objects.create(
+          
+            owner=user_data,
+          
+            id=6,
+          
+            texture_mean=44444.0,
+          
+            area_mean=4444.0,
+          
+            smoothness_mean=444.0,
+          
+            compactness_mean=4444.0,
+          
+            concavity_mean=444.0,
+          
+            concave_points_mean=444.0,
+          
+            state=444.0,
+        )
+
+        test_cancer.save()
+
+        cancer = Cancer.objects.get()
+
+        url = reverse("cancerdetail", kwargs={"pk": cancer.id})
+       
+        self.client.login(username="test", password="test")
+
+        response = self.client.delete(url)
+
+        self.assertEquals(response.status_code, status.HTTP_204_NO_CONTENT, url)
