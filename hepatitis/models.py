@@ -87,7 +87,7 @@ class Hepatitis(models.Model):
     owner=models.ForeignKey(get_user_model(),models.CASCADE,null=True,blank=True)
     name = models.CharField(max_length=55, default=None, null=True)
     email = models.CharField(max_length=55, default=None, null=True)
-    mobile = models.IntegerField(default=None, null=True)
+    mobile = models.CharField(max_length=10, default=None, null=True)
     age = models.IntegerField(default=None, null=True)
     gender = models.CharField(max_length=6, choices=GENDER, default=G1, null=True)
     steroid = models.CharField(max_length=6, choices=STERIOD, default=Steriod2, null=True)
