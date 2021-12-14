@@ -46,3 +46,27 @@ class CancerTests(TestCase):
             state=1,
         )
         testcancer.save()
+
+
+    def test_content(self):
+        data_cancer = Cancer.objects.get(id=1)
+
+        self.assertEqual(str(data_cancer.owner), "test")
+        
+
+        self.assertEqual(data_cancer.compactness_mean, 1)
+        
+        self.assertEqual(data_cancer.concavity_mean, 1)
+        
+        self.assertEqual(data_cancer.concave_points_mean, 1)
+        
+        self.assertEqual(data_cancer.state, 1)
+        
+        self.assertEqual(data_cancer.id, 1)
+
+
+        self.assertEqual(data_cancer.texture_mean, 1)
+
+        self.assertEqual(data_cancer.area_mean, 1)
+
+        self.assertEqual(data_cancer.smoothness_mean, 1)
