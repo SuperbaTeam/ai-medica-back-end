@@ -18,3 +18,31 @@ from rest_framework.test import APITestCase
 
         
 
+
+class CancerTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        testuser2 = get_user_model().objects.create_user(
+            username="test", password="test"
+        )
+
+        testuser2.save()
+
+        testcancer = Cancer.objects.create(
+            owner=testuser2,
+           
+            texture_mean=1,
+           
+            area_mean=1,
+           
+            smoothness_mean=1,
+           
+            compactness_mean=1,
+           
+            concavity_mean=1,
+           
+            concave_points_mean=1,
+           
+            state=1,
+        )
+        testcancer.save()
