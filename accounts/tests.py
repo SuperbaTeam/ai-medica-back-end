@@ -144,3 +144,40 @@ class APITest(APITestCase):
                 "owner": user_.id,
             },
         )
+
+    def testcreate(self):
+
+        test_user = get_user_model().objects.create_user(
+        
+            username="test", password="test"
+        )
+        test_user.save()
+
+        url = reverse("cancerlist")
+        data = {
+         
+            "texture_mean": 999.0,
+         
+            "area_mean": 999.0,
+         
+            "smoothness_mean": 999.0,
+         
+            "compactness_mean": 999.0,
+         
+            "concavity_mean": 999.0,
+         
+            "concave_points_mean": 999.0,
+         
+            "state": 999.0,
+         
+            "owner": test_user.id,
+        }
+        self.client.login(username="test", password="test")
+    
+        response = self.client.post(url, data, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED, test_user.id)
+
+        self.assertEqual(Cancer.objects.count(), 1)
+    
+        self.assertEqual(Cancer.objects.get().texture_mean, data["texture_mean"])
