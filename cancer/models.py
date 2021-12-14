@@ -7,13 +7,16 @@ class Cancer(models.Model):
     owner = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True
     )
-    texture_mean = models.FloatField(default=0)
-    area_mean = models.FloatField(default=0)
-    smoothness_mean = models.FloatField(default=0)
-    compactness_mean = models.FloatField(default=0)
-    concavity_mean = models.FloatField(default=0)
-    concave_points_mean = models.FloatField(default=0)
-    state = models.FloatField(default=0)
+    name = models.CharField(default=None, null=True, max_length=55)
+    email = models.CharField(max_length=55, default=None, null=True)
+    age = models.IntegerField(default=None, null=True)
+    texture_mean = models.FloatField(default=None, null=True)
+    area_mean = models.FloatField(default=None, null=True)
+    smoothness_mean = models.FloatField(default=None, null=True)
+    compactness_mean = models.FloatField(default=None, null=True)
+    concavity_mean = models.FloatField(default=None, null=True)
+    concave_points_mean = models.FloatField(default=None, null=True)
+    state = models.FloatField(default=None, null=True)
 
     def __str__(self):
-        return self.owner
+        return self.name
