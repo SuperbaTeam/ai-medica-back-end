@@ -3,6 +3,7 @@ from django.contrib import admin
 
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
+from accounts.custom_claim import my_token_optain_per_view
 
 urlpatterns = [
 
@@ -13,7 +14,7 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path(
         "api/token/",
-        jwt_views.TokenObtainPairView.as_view(),
+        my_token_optain_per_view.as_view(),
         name="token_obtain_pair",
     ),
     path(
