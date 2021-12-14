@@ -181,3 +181,65 @@ class APITest(APITestCase):
         self.assertEqual(Cancer.objects.count(), 1)
     
         self.assertEqual(Cancer.objects.get().texture_mean, data["texture_mean"])
+
+    def testupdate(self):
+        test_user = get_user_model().objects.create_user(
+          
+            username="test", password="test"
+        )
+        test_user.save()
+
+        test_cancer = Cancer.objects.create(
+            owner=test_user,
+          
+            id=1,
+          
+            texture_mean=1,
+          
+            area_mean=1,
+          
+            smoothness_mean=1,
+          
+            compactness_mean=1,
+          
+            concavity_mean=1,
+          
+            concave_points_mean=1,
+          
+            state=1,
+        )
+
+
+        test_cancer.save()
+
+        url = reverse("cancerdetail", args=[test_cancer.id])
+      
+        data = {
+      
+            "id": 1,
+      
+            "texture_mean": 999.0,
+            "area_mean": 999.0,
+      
+            "smoothness_mean": 999.0,
+      
+            "compactness_mean": 999.0,
+      
+            "concavity_mean": 999.0,
+      
+            "concave_points_mean": 999.0,
+      
+            "state": 999.0,
+      
+            "owner": test_user.id,
+      
+        }
+        self.client.login(username="test", password="test")
+
+        response = self.client.put(url, data, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK, url)
+
+        self.assertEqual(Cancer.objects.count(), test_cancer.id)
+     
+        self.assertEqual(Cancer.objects.get().id, data["id"])
