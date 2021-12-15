@@ -82,14 +82,20 @@ def Stroke_Create(request):
 
 
 class StrokeList(ListCreateAPIView):
-    permission_classes = (IsOwnerOrReadOnly,IsAuthenticatedOrReadOnly,)
+    permission_classes = (
+        IsOwnerOrReadOnly,
+        IsAuthenticatedOrReadOnly,
+    )
     model = Stroke
     serializer_class = StrokeSerializers
     queryset = Stroke.objects.all()
 
 
 class StrokeDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsOwnerOrReadOnly,IsAuthenticatedOrReadOnly,)
+    permission_classes = (
+        IsOwnerOrReadOnly,
+        IsAuthenticatedOrReadOnly,
+    )
     model = Stroke
     serializer_class = StrokeSerializers
     queryset = Stroke.objects.all()
