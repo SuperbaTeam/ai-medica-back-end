@@ -16,6 +16,9 @@ class CancerModelTests(TestCase):
 
         test_cancer = Cancer.objects.create(
             owner=test_user,
+            name="Ashley",
+            email="ashley@test.com",
+            age=23,
             texture_mean=1,
             area_mean=1,
             smoothness_mean=1,
@@ -26,10 +29,13 @@ class CancerModelTests(TestCase):
         )
         test_cancer.save()
 
-    def test_blog_content(self):
+    def test_cancer_content(self):
         cancer = Cancer.objects.get(id=1)
 
         self.assertEqual(str(cancer.owner), "tester")
+        self.assertEqual(cancer.name, "Ashley")
+        self.assertEqual(cancer.email, "ashley@test.com")
+        self.assertEqual(cancer.age, 23)
         self.assertEqual(cancer.texture_mean, 1)
         self.assertEqual(cancer.area_mean, 1)
         self.assertEqual(cancer.smoothness_mean, 1)
@@ -54,6 +60,10 @@ class APITest(APITestCase):
 
         test_cancer = Cancer.objects.create(
             owner=test_user,
+            id=1,
+            name="Ashley",
+            email="ashley@test.com",
+            age=23,
             texture_mean=1,
             area_mean=1,
             smoothness_mean=1,
@@ -70,6 +80,9 @@ class APITest(APITestCase):
             response.data,
             {
                 "id": 1,
+                "name": test_cancer.name,
+                "email": test_cancer.email,
+                "age": test_cancer.age,
                 "texture_mean": test_cancer.texture_mean,
                 "area_mean": test_cancer.area_mean,
                 "smoothness_mean": test_cancer.smoothness_mean,
@@ -87,9 +100,12 @@ class APITest(APITestCase):
         )
         test_user.save()
 
-        url = reverse("cancer_list")
+        url = reverse("cancer_create")
         data = {
             # "id": 1,
+            "name": "Ashley",
+            "email": "ashley@test.com",
+            "age": 23,
             "texture_mean": 999.0,
             "area_mean": 999.0,
             "smoothness_mean": 999.0,
@@ -105,7 +121,7 @@ class APITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED, test_user.id)
 
         self.assertEqual(Cancer.objects.count(), 1)
-        self.assertEqual(Cancer.objects.get().texture_mean, data["texture_mean"])
+        self.assertEqual(Cancer.objects.get().name, data["name"])
 
     def test_update(self):
         test_user = get_user_model().objects.create_user(
@@ -116,6 +132,9 @@ class APITest(APITestCase):
         test_cancer = Cancer.objects.create(
             owner=test_user,
             id=1,
+            name="Ashley",
+            email="ashley@test.com",
+            age=23,
             texture_mean=1,
             area_mean=1,
             smoothness_mean=1,
@@ -130,6 +149,9 @@ class APITest(APITestCase):
         url = reverse("cancer_detail", args=[test_cancer.id])
         data = {
             "id": 1,
+            "name": "Ashley",
+            "email": "ashley@test.com",
+            "age": 23,
             "texture_mean": 999.0,
             "area_mean": 999.0,
             "smoothness_mean": 999.0,
@@ -159,6 +181,9 @@ class APITest(APITestCase):
         test_cancer = Cancer.objects.create(
             owner=test_user,
             id=6,
+            name="Ashley",
+            email="ashley@test.com",
+            age=23,
             texture_mean=44444.0,
             area_mean=4444.0,
             smoothness_mean=444.0,

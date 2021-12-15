@@ -27,7 +27,7 @@ def Hepatitis_Create(request):
         anorexia = data["anorexia"]
         liver_big = data["liver_big"]
         liver_firm = data["liver_firm"]
-        spleen_palpable =data["spleen_palpable"]
+        spleen_palpable = data["spleen_palpable"]
         spiders = data["spiders"]
         ascites = data["ascites"]
         varices = data["varices"]
@@ -60,7 +60,6 @@ def Hepatitis_Create(request):
             protime,
         ]
 
-
         from .predictor import AIModel
 
         instance = AIModel()
@@ -75,28 +74,28 @@ def Hepatitis_Create(request):
             predicted_status = "Unkown"
 
         Hepatitis.objects.create(
-            name = name,
-            email = email,
-            mobile = mobile,
-            age = age,
-            gender = gender,
-            steroid = steroid,
-            antivirals = antivirals,
-            fatigue = fatigue,
-            malaise = malaise,
-            anorexia = anorexia,
-            liver_big = liver_big,
-            liver_firm = liver_firm,
-            spleen_palpable = spleen_palpable,
-            spiders = spiders,
-            ascites = ascites,
-            varices = varices,
-            bilirubin = bilirubin,
-            alk_phosphate = alk_phosphate,
-            sgot = sgot,
-            albumin = albumin,
-            protime = protime,
-            histology = histology,
+            name=name,
+            email=email,
+            mobile=mobile,
+            age=age,
+            gender=gender,
+            steroid=steroid,
+            antivirals=antivirals,
+            fatigue=fatigue,
+            malaise=malaise,
+            anorexia=anorexia,
+            liver_big=liver_big,
+            liver_firm=liver_firm,
+            spleen_palpable=spleen_palpable,
+            spiders=spiders,
+            ascites=ascites,
+            varices=varices,
+            bilirubin=bilirubin,
+            alk_phosphate=alk_phosphate,
+            sgot=sgot,
+            albumin=albumin,
+            protime=protime,
+            histology=histology,
             status=predicted_status,
         )
 
@@ -104,14 +103,20 @@ def Hepatitis_Create(request):
 
 
 class HepatitisList(ListCreateAPIView):
-    permission_classes = (IsOwnerOrReadOnly,IsAuthenticatedOrReadOnly,)
+    permission_classes = (
+        IsOwnerOrReadOnly,
+        IsAuthenticatedOrReadOnly,
+    )
     model = Hepatitis
     serializer_class = HepatitisSerializers
     queryset = Hepatitis.objects.all()
 
 
 class HepatitisDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsOwnerOrReadOnly,IsAuthenticatedOrReadOnly,)
+    permission_classes = (
+        IsOwnerOrReadOnly,
+        IsAuthenticatedOrReadOnly,
+    )
     model = Hepatitis
     serializer_class = HepatitisSerializers
     queryset = Hepatitis.objects.all()
