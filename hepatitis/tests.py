@@ -1,4 +1,3 @@
-import json
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
@@ -155,7 +154,6 @@ class APITest(APITestCase):
 
         url = reverse("hepatitis_create")
         data = {
-            # "id": 1,
             "name": "Jehad Abu Awwad",
             "email": "Jehadabuawwad@outlook.com",
             "mobile": "0790187612",
@@ -235,77 +233,3 @@ class APITest(APITestCase):
         response = self.client.delete(url)
 
         self.assertEquals(response.status_code, status.HTTP_204_NO_CONTENT, url)
-
-    # def test_update(self):
-    #     test_user = get_user_model().objects.create_user(
-    #         username="tester", password="pass"
-    #     )
-    #     test_user.save()
-
-    #     test_hepatitis = Hepatitis.objects.create(
-    #         owner=test_user,
-    #         id=1,
-    #         name="Jehad Abu Awwad",
-    #         email="Jehadabuawwad@outlook.com",
-    #         mobile="0790187612",
-    #         age=24,
-    #         gender="1",
-    #         steroid="1",
-    #         antivirals="1",
-    #         fatigue="1",
-    #         malaise="1",
-    #         anorexia="1",
-    #         liver_big="1",
-    #         liver_firm="1",
-    #         spleen_palpable="2",
-    #         spiders="1",
-    #         ascites="1",
-    #         varices="1",
-    #         bilirubin=22.5,
-    #         alk_phosphate=22.4,
-    #         sgot=23.4,
-    #         albumin=33.5,
-    #         protime=22.0,
-    #         histology="1",
-    #         status="live",
-    #     )
-
-    #     test_hepatitis.save()
-
-    #     url = reverse("hepatitis_detail", args=[test_hepatitis.id])
-
-    #     data = {
-    #         "id": 1,
-    #         "name": "Jehad Abu Awwad",
-    #         "email": "Jehadabuawwad@outlook.com",
-    #         "mobile": "0790187612",
-    #         "age": 29,
-    #         "gender": "1",
-    #         "steroid": "1",
-    #         "antivirals": "1",
-    #         "fatigue": "1",
-    #         "malaise": "1",
-    #         "anorexia": "1",
-    #         "liver_big": "1",
-    #         "liver_firm": "1",
-    #         "spleen_palpable": 2,
-    #         "spiders": "1",
-    #         "ascites": "1",
-    #         "varices": "1",
-    #         "bilirubin": 22.5,
-    #         "alk_phosphate": 99.9,
-    #         "sgot": 23.4,
-    #         "albumin": 33.5,
-    #         "protime": 22.0,
-    #         "histology": "1",
-    #         "status": "live",
-    #         "owner": test_user.id,
-    #     }
-    #     self.client.login(username="tester", password="pass")
-
-    #     response = self.client.put(url, data, format="json")
-
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK, url)
-
-    #     self.assertEqual(Hepatitis.objects.count(), test_hepatitis.id)
-    #     self.assertEqual(Hepatitis.objects.get().id, data["id"])
