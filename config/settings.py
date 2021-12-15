@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
     DEBUG=(bool, False),
     ENVIRONMENT=(str, "PRODUCTION"),
-    ALLOW_ALL_ORIGINS=(bool, False),
     ALLOWED_HOSTS=(list, []),
     ALLOWED_ORIGINS=(list, []),
+    CORS_ALLOW_ALL_ORIGINS=(bool, True),
     CORS_ALLOWED_ORIGINS=(list, []),
     DATABASE_ENGINE=(str, "django.db.backends.sqlite3"),
     DATABASE_NAME=(str, BASE_DIR / "db.sqlite3"),
@@ -42,7 +42,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 ENVIRONMENT = env.str("ENVIRONMENT")
 ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
 # CORS_ALLOWED_ORIGINS = tuple(env.list("CORS_ALLOWED_ORIGINS"))
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
