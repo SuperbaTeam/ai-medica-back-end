@@ -2,5 +2,6 @@
     "python.formatting.provider": "black",
     "terminal.integrated.commandsToSkipShell": [
         "vscode-cmd-aliases.execute"
-    ]
+    ],
+    "python.linting.enabled": false
 }
