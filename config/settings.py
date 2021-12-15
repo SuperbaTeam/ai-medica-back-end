@@ -44,9 +44,7 @@ ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
 
 ENVIRONMENT = env.str("ENVIRONMENT")
 
-CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
 
-CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
 
 # Application definition
 
@@ -69,13 +67,13 @@ INSTALLED_APPS = [
     "cancer",
 ]
 
-MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
+MIDDLEWARE = [  
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -186,3 +184,7 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
     "AUTH_TOKEN_CLASSES": ["rest_framework_simplejwt.tokens.AccessToken"],
 }
+
+CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
+
+CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
