@@ -102,7 +102,6 @@ class APITest(APITestCase):
 
         url = reverse("cancer_create")
         data = {
-            # "id": 1,
             "name": "Ashley",
             "email": "ashley@test.com",
             "age": 23,
