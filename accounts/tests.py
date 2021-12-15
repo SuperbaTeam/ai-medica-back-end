@@ -10,5 +10,7 @@ class AccountTests(TestCase):
 
         testuser.save()
         cls.assertEqual(testuser.username, "test")
-        
+
+        cls.assertEqual(testuser.email, "test@test.com")
+       
         cls.assertEqual(testuser.password, "test")
