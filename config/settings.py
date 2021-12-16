@@ -26,7 +26,6 @@ env = environ.Env(
     ENVIRONMENT=(str, "PRODUCTION"),
     ALLOW_ALL_ORIGINS=(bool, False),
     ALLOWED_HOSTS=(list, []),
-    ALLOWED_ORIGINS=(list, []), 
     DATABASE_ENGINE=(str, "django.db.backends.sqlite3"),
     DATABASE_NAME=(str, BASE_DIR / "db.sqlite3"),
     DATABASE_USER=(str, ""),
@@ -185,6 +184,5 @@ SIMPLE_JWT = {
     "AUTH_TOKEN_CLASSES": ["rest_framework_simplejwt.tokens.AccessToken"],
 }
 
-CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
 
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
