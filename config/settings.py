@@ -188,3 +188,5 @@ SIMPLE_JWT = {
 CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
 
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
+
+CSRF_TRUSTED_ORIGINS = ['ai-medica-backend.herokuapp.com','ai-medica-front-end.vercel.app']
