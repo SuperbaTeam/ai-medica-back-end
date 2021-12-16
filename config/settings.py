@@ -26,8 +26,7 @@ env = environ.Env(
     ENVIRONMENT=(str, "PRODUCTION"),
     ALLOW_ALL_ORIGINS=(bool, False),
     ALLOWED_HOSTS=(list, []),
-    ALLOWED_ORIGINS=(list, []),
-    CORS_ALLOWED_ORIGINS=(list, []),
+    ALLOWED_ORIGINS=(list, []), 
     DATABASE_ENGINE=(str, "django.db.backends.sqlite3"),
     DATABASE_NAME=(str, BASE_DIR / "db.sqlite3"),
     DATABASE_USER=(str, ""),
@@ -37,16 +36,20 @@ env = environ.Env(
 )
 environ.Env.read_env()
 
-DEBUG = env.bool("DEBUG")
 SECRET_KEY = env.str("SECRET_KEY")
-ENVIRONMENT = env.str("ENVIRONMENT")
+
+DEBUG = env.bool("DEBUG")
+
 ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
-# CORS_ALLOWED_ORIGINS = tuple(env.list("CORS_ALLOWED_ORIGINS"))
-CORS_ALLOW_ALL_ORIGINS = True
+
+ENVIRONMENT = env.str("ENVIRONMENT")
+
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -64,13 +67,13 @@ INSTALLED_APPS = [
     "cancer",
 ]
 
-MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
+MIDDLEWARE = [  
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -181,3 +184,7 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
     "AUTH_TOKEN_CLASSES": ["rest_framework_simplejwt.tokens.AccessToken"],
 }
+
+CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
+
+CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
