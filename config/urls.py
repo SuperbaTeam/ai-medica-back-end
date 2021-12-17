@@ -14,7 +14,6 @@ urlpatterns = [
     path("api/cancer/", include("cancer.urls")),
     path("api/stroke/", include("stroke.urls")),
     path("api/hepatitis/", include("hepatitis.urls")),
-    path("api-auth/", include("rest_framework.urls")),
     path(
         "api/token/",
         MyObtainTokenPairView.as_view(),

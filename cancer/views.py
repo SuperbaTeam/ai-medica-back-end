@@ -5,7 +5,7 @@ from rest_framework.generics import (
 from .models import Cancer
 from .serializers import CancerSerializer
 from .permissions import IsOwnerOrReadOnly
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly,AllowAny
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
@@ -50,6 +50,6 @@ class CancerList(ListCreateAPIView):
 
 
 class CancerDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (AllowAny,)
     queryset = Cancer.objects.all()
     serializer_class = CancerSerializer
