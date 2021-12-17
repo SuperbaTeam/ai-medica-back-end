@@ -2,10 +2,11 @@ from rest_framework_simplejwt import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from rest_framework_simplejwt.views import TokenObtainPairView
-from django.views.decorators.csrf import requires_csrf_token
-@requires_csrf_token
+from rest_framework.permissions import AllowAny
 class my_token_obtain_per_serializer(TokenObtainPairSerializer):
+    
     @classmethod
+    @permission_classes([AllowAny])
     def get_token(cls, user):
         token=super().get_token(user)
         token["username"]=user.username
