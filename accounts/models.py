@@ -7,7 +7,7 @@ class CustomUser(AbstractUser):
         unique=True, max_length=254, verbose_name="Email Address"
     )
 
-    REQUIRED_FIELDS = ["email", "password"]
+    REQUIRED_FIELDS = ["email","password"]
 
     class Meta:
         verbose_name = "Patient"
