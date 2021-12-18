@@ -5,7 +5,7 @@ from rest_framework import status
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-
+from rest_framework.permissions import AllowAny
 from .models import Stroke
 from .permissions import IsOwnerOrReadOnly
 from .serializers import StrokeSerializers
@@ -92,10 +92,7 @@ class StrokeList(ListCreateAPIView):
 
 
 class StrokeDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = (
-        IsOwnerOrReadOnly,
-        IsAuthenticatedOrReadOnly,
-    )
+    permission_classes = (AllowAny,)
     model = Stroke
     serializer_class = StrokeSerializers
     queryset = Stroke.objects.all()
