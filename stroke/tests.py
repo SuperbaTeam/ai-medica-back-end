@@ -22,13 +22,13 @@ class StrokeModelTests(TestCase):
             age=24,
             bmi=18.0,
             avg_glucose_level=81.0,
-            gender="True",
-            residence_type="True",
-            ever_married="False",
+            gender="1",
+            residence_type="1",
+            ever_married="0",
             work_type="1, 0, 0, 0, 0",
             smoking_status="1, 0, 0, 0",
-            hypertension="True",
-            heart_disease="False",
+            hypertension="1",
+            heart_disease="0",
             status="Positve",
             owner=test_user,
         )
@@ -45,13 +45,13 @@ class StrokeModelTests(TestCase):
         self.assertEqual(stroke.age, 24)
         self.assertEqual(stroke.bmi, 18.0)
         self.assertEqual(stroke.avg_glucose_level, 81.0)
-        self.assertEqual(stroke.gender, "True")
-        self.assertEqual(stroke.residence_type, "True")
-        self.assertEqual(stroke.ever_married, "False")
+        self.assertEqual(stroke.gender, "1")
+        self.assertEqual(stroke.residence_type, "1")
+        self.assertEqual(stroke.ever_married, "0")
         self.assertEqual(stroke.work_type, "1, 0, 0, 0, 0")
         self.assertEqual(stroke.smoking_status, "1, 0, 0, 0")
-        self.assertEqual(stroke.hypertension, "True")
-        self.assertEqual(stroke.heart_disease, "False")
+        self.assertEqual(stroke.hypertension, "1")
+        self.assertEqual(stroke.heart_disease, "0")
         self.assertEqual(stroke.status, "Positve")
 
 
@@ -74,13 +74,13 @@ class APITest(APITestCase):
             age=24,
             bmi=18.0,
             avg_glucose_level=81.0,
-            gender="True",
-            residence_type="True",
-            ever_married="False",
+            gender="1",
+            residence_type="1",
+            ever_married="0",
             work_type="1, 0, 0, 0, 0",
             smoking_status="1, 0, 0, 0",
-            hypertension="True",
-            heart_disease="False",
+            hypertension="1",
+            heart_disease="0",
             status="Positve",
             owner=test_user,
         )
@@ -158,13 +158,13 @@ class APITest(APITestCase):
             age=24,
             bmi=18.0,
             avg_glucose_level=81.0,
-            gender="True",
-            residence_type="True",
-            ever_married="False",
+            gender="1",
+            residence_type="1",
+            ever_married="0",
             work_type="1, 0, 0, 0, 0",
             smoking_status="1, 0, 0, 0",
-            hypertension="True",
-            heart_disease="False",
+            hypertension="1",
+            heart_disease="0",
             status="Positve",
             owner=test_user,
         )

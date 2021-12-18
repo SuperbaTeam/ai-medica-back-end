@@ -10,7 +10,7 @@ class CancerModelTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         test_user = get_user_model().objects.create_user(
-            username="tester", password="pass"
+            username="tester",email="test@test.com", password="pass"
         )
         test_user.save()
 
@@ -54,7 +54,7 @@ class APITest(APITestCase):
     def test_detail(self):
 
         test_user = get_user_model().objects.create_user(
-            username="tester", password="pass"
+            username="tester",email="test@test.com", password="pass"
         )
         test_user.save()
 
@@ -96,7 +96,7 @@ class APITest(APITestCase):
 
     def test_create(self):
         test_user = get_user_model().objects.create_user(
-            username="tester", password="pass"
+            username="tester",email="test@test.com", password="pass"
         )
         test_user.save()
 
@@ -114,7 +114,7 @@ class APITest(APITestCase):
             "state": 999.0,
             "owner": test_user.id,
         }
-        self.client.login(username="tester", password="pass")
+        self.client.login(username="tester",email="test@test.com", password="pass")
         response = self.client.post(url, data, format="json")
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED, test_user.id)
@@ -124,7 +124,7 @@ class APITest(APITestCase):
 
     def test_update(self):
         test_user = get_user_model().objects.create_user(
-            username="tester", password="pass"
+            username="tester",email="test@test.com", password="pass"
         )
         test_user.save()
 
@@ -160,7 +160,7 @@ class APITest(APITestCase):
             "state": 999.0,
             "owner": test_user.id,
         }
-        self.client.login(username="tester", password="pass")
+        self.client.login(username="tester",email="test@test.com", password="pass")
 
         response = self.client.put(url, data, format="json")
 
@@ -173,7 +173,7 @@ class APITest(APITestCase):
         """Test the api can delete a Cancer."""
 
         test_user = get_user_model().objects.create_user(
-            username="tester", password="pass"
+            username="tester",email="test@test.com", password="pass"
         )
         test_user.save()
 
@@ -197,7 +197,7 @@ class APITest(APITestCase):
         cancer = Cancer.objects.get()
 
         url = reverse("cancer_detail", kwargs={"pk": cancer.id})
-        self.client.login(username="tester", password="pass")
+        self.client.login(username="tester",email="test@test.com", password="pass")
 
         response = self.client.delete(url)
 

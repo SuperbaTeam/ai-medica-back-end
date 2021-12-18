@@ -4,7 +4,7 @@ from rest_framework import status
 
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 
 from .models import Hepatitis
 from .permissions import IsOwnerOrReadOnly
@@ -113,10 +113,7 @@ class HepatitisList(ListCreateAPIView):
 
 
 class HepatitisDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = (
-        IsOwnerOrReadOnly,
-        IsAuthenticatedOrReadOnly,
-    )
+    permission_classes = (AllowAny,)
     model = Hepatitis
     serializer_class = HepatitisSerializers
     queryset = Hepatitis.objects.all()
