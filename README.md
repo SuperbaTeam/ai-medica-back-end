@@ -2,7 +2,7 @@
 
 - Musa'b Shalaldeh
 - Faisal Kushha
-- Jad Abu Awwad
+- Jehad Abu Awwad
 - Shahed Al Khateeb
 
 # **AI Medica**
